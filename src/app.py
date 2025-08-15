@@ -6,13 +6,15 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-modelos = joblib.load("./src/modelos_unicos.pkl")
-fabricantes = joblib.load("./src/Fabricantes_unicos.pkl")
-estados = joblib.load("./src/State_unicos.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-preprocessor = joblib.load("./models/preprocessor.pkl")
-scaler = joblib.load("./models/scaler.pkl")
-modelopredictor = joblib.load("./models/modelo_random_forest_Omega10.pkl")
+modelos = joblib.load(os.path.join(BASE_DIR, "modelos_unicos.pkl"))
+fabricantes = joblib.load(os.path.join(BASE_DIR, "Fabricantes_unicos.pkl"))
+estados = joblib.load(os.path.join(BASE_DIR, "State_unicos.pkl"))
+
+preprocessor = joblib.load(os.path.join(BASE_DIR, "../models/preprocessor.pkl"))
+scaler = joblib.load(os.path.join(BASE_DIR, "../models/scaler.pkl"))
+modelopredictor = joblib.load(os.path.join(BASE_DIR, "../models/modelo_random_forest_Omega10.pkl"))
 
 def formatear_fecha(fecha_str):
     dt = datetime.strptime(fecha_str, "%Y-%m-%d")
